@@ -6,11 +6,11 @@
 /*   By: aakourya <aakourya@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 14:26:47 by aakourya          #+#    #+#             */
-/*   Updated: 2025/11/20 09:41:28 by aakourya         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:17:39 by aakourya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 static size_t	ft_strlen(const char *s)
 {
@@ -24,21 +24,21 @@ static size_t	ft_strlen(const char *s)
 
 static void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-    size_t				i;
-    unsigned char		*dest_bytes;
-    const unsigned char	*src_bytes;
+	size_t				i;
+	unsigned char		*dest_bytes;
+	const unsigned char	*src_bytes;
 
-    if (!dest && !src)
-        return (NULL);
-    i = 0;
-    dest_bytes = (unsigned char *)dest;
-    src_bytes = (const unsigned char *)src;
-    while (i < n)
-    {
-        dest_bytes[i] = src_bytes[i];
-        i++;
-    }
-    return (dest);
+	if (!dest && !src)
+		return (NULL);
+	i = 0;
+	dest_bytes = (unsigned char *)dest;
+	src_bytes = (const unsigned char *)src;
+	while (i < n)
+	{
+		dest_bytes[i] = src_bytes[i];
+		i++;
+	}
+	return (dest);
 }
 
 char	*ft_strdup(const char *s)
@@ -60,7 +60,6 @@ char	*ft_strdup(const char *s)
 	str[i] = '\0';
 	return (str);
 }
-
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -104,6 +103,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	ft_memcpy(str, s1, s1_len);
 	ft_memcpy((str + s1_len), s2, s2_len);
 	str[total_len - 1] = '\0';
-    free(s1);
+	free(s1);
 	return (str);
 }

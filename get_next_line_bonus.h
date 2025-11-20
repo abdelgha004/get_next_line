@@ -6,20 +6,19 @@
 /*   By: aakourya <aakourya@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 14:27:11 by aakourya          #+#    #+#             */
-/*   Updated: 2025/11/20 09:41:14 by aakourya         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:28:29 by aakourya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 20
+# endif
 
-# include <stdio.h> //to remove
 # include <stdlib.h>
-# include <unistd.h> //to remove
+# include <unistd.h>
 
 char	*get_next_line(int fd);
 
