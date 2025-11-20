@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonnus.h                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakourya <aakourya@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 14:26:57 by aakourya          #+#    #+#             */
-/*   Updated: 2025/11/17 14:29:20 by aakourya         ###   ########.fr       */
+/*   Created: 2025/11/17 14:27:11 by aakourya          #+#    #+#             */
+/*   Updated: 2025/11/20 09:41:14 by aakourya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONNUS_H
-#define GET_NEXT_LINE_BONNUS_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-#include <stdio.h> //to remove
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 42
+#endif
 
-char *get_next_line(int fd);
+# include <stdio.h> //to remove
+# include <stdlib.h>
+# include <unistd.h> //to remove
+
+char	*get_next_line(int fd);
+
+char	*ft_strdup(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char *s1, char *s2);
 
 #endif
