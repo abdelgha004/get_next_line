@@ -6,7 +6,7 @@
 /*   By: aakourya <aakourya@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:03:53 by aakourya          #+#    #+#             */
-/*   Updated: 2025/11/22 10:50:52 by aakourya         ###   ########.fr       */
+/*   Updated: 2025/11/22 12:31:17 by aakourya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*read_until_newline(int fd, char *saved)
 		buffer[byte_read] = '\0';
 		tmp = ft_strjoin(saved, buffer);
 		if (!tmp)
-			return (free(buffer), free(saved), NULL);
+			return (free(buffer), NULL);
 		saved = tmp;
 	}
 	free(buffer);

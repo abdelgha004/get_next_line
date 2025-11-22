@@ -6,11 +6,11 @@
 /*   By: aakourya <aakourya@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 14:26:47 by aakourya          #+#    #+#             */
-/*   Updated: 2025/11/20 15:17:39 by aakourya         ###   ########.fr       */
+/*   Updated: 2025/11/22 12:14:59 by aakourya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static size_t	ft_strlen(const char *s)
 {
@@ -92,14 +92,16 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 		s1 = ft_strdup("");
-	if (!s1 || !s2)
+	if (!s1)
 		return (NULL);
+	if (!s2)
+		return (free(s1), NULL);
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	total_len = s1_len + s2_len + 1;
 	str = malloc(total_len);
 	if (!str)
-		return (NULL);
+		return (free(s1), NULL);
 	ft_memcpy(str, s1, s1_len);
 	ft_memcpy((str + s1_len), s2, s2_len);
 	str[total_len - 1] = '\0';
