@@ -6,19 +6,19 @@
 /*   By: aakourya <aakourya@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:03:53 by aakourya          #+#    #+#             */
-/*   Updated: 2025/11/22 12:31:17 by aakourya         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:03:57 by aakourya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static int	has_newline(char *s)
+int	has_newline(char *s)
 {
 	int	i;
 
+	i = 0;
 	if (!s)
 		return (-1);
-	i = 0;
 	while (s[i])
 	{
 		if (s[i] == '\n')
@@ -28,13 +28,15 @@ static int	has_newline(char *s)
 	return (-1);
 }
 
-static char	*read_until_newline(int fd, char *saved)
+char	*read_until_newline(int fd, char *saved)
 {
 	char	*buffer;
 	char	*tmp;
-	int		byte_read;
+	ssize_t	byte_read;
 
-	buffer = malloc(BUFFER_SIZE + 1);
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buffer)
 		return (free(saved), NULL);
 	while (has_newline(saved) == -1)
@@ -54,7 +56,7 @@ static char	*read_until_newline(int fd, char *saved)
 	return (saved);
 }
 
-static char	*get_line(char *saved)
+char	*get_line(char *saved)
 {
 	char	*line;
 	int		i;
@@ -72,7 +74,7 @@ static char	*get_line(char *saved)
 	return (line);
 }
 
-static char	*update_saved(char *saved)
+char	*update_saved(char *saved)
 {
 	char	*new_saved;
 	int		i;
@@ -96,8 +98,6 @@ char	*get_next_line(int fd)
 	static char	*saved[1024];
 	char		*line;
 
-	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
-		return (NULL);
 	saved[fd] = read_until_newline(fd, saved[fd]);
 	if (!saved[fd])
 		return (NULL);

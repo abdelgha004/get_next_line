@@ -6,13 +6,13 @@
 /*   By: aakourya <aakourya@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 09:44:25 by aakourya          #+#    #+#             */
-/*   Updated: 2025/11/22 12:31:02 by aakourya         ###   ########.fr       */
+/*   Updated: 2025/11/24 18:30:38 by aakourya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	has_newline(char *s)
+int	has_newline(char *s)
 {
 	int	i;
 
@@ -28,13 +28,15 @@ static int	has_newline(char *s)
 	return (-1);
 }
 
-static char	*read_until_newline(int fd, char *saved)
+char	*read_until_newline(int fd, char *saved)
 {
 	char	*buffer;
 	char	*tmp;
-	int		byte_read;
+	ssize_t	byte_read;
 
-	buffer = malloc(BUFFER_SIZE + 1);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buffer)
 		return (free(saved), NULL);
 	while (has_newline(saved) == -1)
@@ -54,7 +56,7 @@ static char	*read_until_newline(int fd, char *saved)
 	return (saved);
 }
 
-static char	*get_line(char *saved)
+char	*get_line(char *saved)
 {
 	char	*line;
 	int		i;
@@ -72,7 +74,7 @@ static char	*get_line(char *saved)
 	return (line);
 }
 
-static char	*update_saved(char *saved)
+char	*update_saved(char *saved)
 {
 	char	*new_saved;
 	int		i;
@@ -96,8 +98,6 @@ char	*get_next_line(int fd)
 	static char	*saved;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
 	saved = read_until_newline(fd, saved);
 	if (!saved)
 		return (NULL);
